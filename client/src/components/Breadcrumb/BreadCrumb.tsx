@@ -15,8 +15,8 @@ const Breadcrumb = ({ stages, current }: BreadcrumbProps) => {
   return (
     <BreadcrumbContainer>
       {stages.map((stage) => (
-        <BreadcrumbItem active={stage.order === current}>
-          <BreadcrumbNumber>{stage.order}</BreadcrumbNumber>
+        <BreadcrumbItem key={stage.name} active={stage.order === current}>
+          <BreadcrumbNumber>{stage.order + 1}</BreadcrumbNumber>
           {stage.name}
         </BreadcrumbItem>
       ))}

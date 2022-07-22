@@ -18,8 +18,11 @@ import {
   BackgroundContainer,
   ContentContainer,
   MainContainer,
+  StyledLogo,
 } from "./components/StyledComponents";
+import Basket from "./components/Basket";
 import Breadcrumb from "./components/Breadcrumb";
+import Logo from "./logo.jpeg";
 import Navigation from "./components/Navigation";
 import TicketList from "./components/TicketList";
 
@@ -56,7 +59,7 @@ const App = () => {
     (stage: Stage) => {
       const components = {
         0: <TicketList tickets={data ?? []} />,
-        1: <>kosár</>,
+        1: <Basket tickets={data ?? []} />,
         2: <>fizetési adatok</>,
         3: <>jegyek küldése</>,
       };
@@ -68,6 +71,7 @@ const App = () => {
   return (
     <BackgroundContainer>
       <MainContainer>
+        <StyledLogo src={Logo} />
         <Breadcrumb stages={stages} current={currentStage} />
         <ContentContainer>{renderMainComponent(currentStage)}</ContentContainer>
         <Navigation

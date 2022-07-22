@@ -20,3 +20,5 @@ export type Ticket = {
   available: number;
   price: number;
 };
+
+export type TicketInBasket = Ticket & BasketItem;

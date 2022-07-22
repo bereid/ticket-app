@@ -43,10 +43,11 @@ const TicketList = ({ tickets }: TicketListProps) => {
         position: "relative",
         overflow: "auto",
         maxHeight: 500,
+        margin: "0 24px",
       }}
     >
       {tickets?.map((ticket) => (
-        <ListItem disabled={ticket.available <= 0} divider>
+        <ListItem key={ticket.name} disabled={ticket.available <= 0} divider>
           <ListItemText
             primary={ticket.name}
             secondary={`Ár: ${ticket.price} Ft, elérhető: ${ticket.available} darab`}

@@ -29,6 +29,12 @@ export const MainContainer = styled(Card)`
   flex-direction: column;
 `;
 
+export const StyledLogo = styled.img`
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+`;
+
 export const ContentContainer = styled.div`
   height: 500px;
 `;
@@ -81,9 +87,4 @@ export const NavigationButton = styled(Button)`
       background-color: ${colors.dark};
     }
   }
-`;
-
-export const TicketListContainer = styled(List)`
-  max-height: 400px;
-  overflow: sroll;
 `;
