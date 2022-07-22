@@ -1,11 +1,19 @@
-import { useAppSelector } from "../../storeHooks";
+import { useAppDispatch, useAppSelector } from "../../storeHooks";
 
-import { FormContainer, StyledTextField } from "../StyledComponents";
+import { FormContainer } from "../StyledComponents";
 import TextField from "@mui/material/TextField";
 import { colors } from "../StyledComponents";
+import { updateEmail, updateName } from "../../features/user";
+import React from "react";
 
 const Contact = () => {
   const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  const setName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(updateName({ name: e.target.value }));
+  const setEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(updateEmail({ email: e.target.value }));
 
   return (
     <FormContainer>
@@ -14,6 +22,8 @@ const Contact = () => {
         type="Text"
         variant="outlined"
         fullWidth
+        value={user.name}
+        onChange={setName}
         sx={textfieldSx}
         InputLabelProps={textInputLabelProps}
         InputProps={textInputProps}
@@ -23,6 +33,8 @@ const Contact = () => {
         type="Text"
         variant="outlined"
         fullWidth
+        value={user.email}
+        onChange={setEmail}
         sx={textfieldSx}
         InputLabelProps={textInputLabelProps}
         InputProps={textInputProps}

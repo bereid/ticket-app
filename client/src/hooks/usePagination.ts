@@ -35,7 +35,7 @@ const usePagination = () => {
       disabled = true;
     if (currentStage === 3) disabled = true;
     return disabled;
-  }, [currentStage, user]);
+  }, [currentStage, user, basket]);
 
   return { currentStage, prevStage, nextStage, prevDisabled, nextDisabled };
 };

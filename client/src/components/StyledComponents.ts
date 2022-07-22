@@ -95,24 +95,3 @@ export const FormContainer = styled(Box)`
   display: flex;
   flex-direction: column;
 `;
-
-export const StyledTextField = styled(TextField)`
-  && {
-    margin-top: 24px;
-    box-shadow: none;
-
-    input {
-      color: ${colors.dark};
-      border: 1px solid ${colors.light};
-      border-radius: 4px;
-
-      "&:hover" {
-        border-color: ${colors.dark};
-      }
-
-      "&::focused" {
-        border-color: ${colors.dark};
-      }
-    }
-  }
-`;
