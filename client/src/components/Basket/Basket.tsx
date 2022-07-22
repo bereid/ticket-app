@@ -1,35 +1,17 @@
-import { Ticket, TicketInBasket } from "../../types";
+import { Ticket } from "../../types";
+import useBasket from "../../hooks/useBasket";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { useAppSelector } from "../../storeHooks";
-import { useMemo } from "react";
 
 type BasketProps = {
   tickets: Ticket[];
 };
 
 const Basket = ({ tickets }: BasketProps) => {
-  const basket = useAppSelector((state) => state.basket);
-
-  const ticketsInBasket = useMemo(() => {
-    return basket.tickets.map((t) => {
-      const relatedTicket = tickets.find((ticket) => ticket.id === t.id);
-      return {
-        ...relatedTicket,
-        value: t.value,
-      } as TicketInBasket;
-    });
-  }, [basket, tickets]);
-
-  const summary: number = useMemo(() => {
-    let sum = 0;
-    ticketsInBasket.forEach((t) => {
-      sum += t.price * t.value;
-    });
-    return sum;
-  }, [ticketsInBasket]);
+  const { ticketsInBasket, summary } = useBasket({ tickets });
 
   return (
     <List

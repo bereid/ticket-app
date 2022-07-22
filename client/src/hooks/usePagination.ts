@@ -26,8 +26,10 @@ const usePagination = () => {
 
   const nextDisabled = useMemo(() => {
     let disabled = false;
-    if (currentStage === 0 && basket.tickets.length < 1) disabled = true;
-    if (currentStage === 1 && basket.tickets.length < 1) disabled = true;
+    if (currentStage === 0 && basket.ticketsInBasket.length < 1)
+      disabled = true;
+    if (currentStage === 1 && basket.ticketsInBasket.length < 1)
+      disabled = true;
     if (
       currentStage === 2 &&
       (!validateEmail(user.email) || user.name.length <= 1)
@@ -37,7 +39,16 @@ const usePagination = () => {
     return disabled;
   }, [currentStage, user, basket]);
 
-  return { currentStage, prevStage, nextStage, prevDisabled, nextDisabled };
+  const isOnLastStage = currentStage === stages.length - 1;
+
+  return {
+    currentStage,
+    prevStage,
+    nextStage,
+    prevDisabled,
+    nextDisabled,
+    isOnLastStage,
+  };
 };
 
 export default usePagination;

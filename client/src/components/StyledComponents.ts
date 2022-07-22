@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 
 export const colors = {
   primary: "#0c9d9a",
@@ -17,6 +18,7 @@ export const BackgroundContainer = styled.div`
   overflow: hidden;
   background-color: ${colors.primary};
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
@@ -41,6 +43,7 @@ export const ContentContainer = styled.div`
 export const BreadcrumbContainer = styled(Box)`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: ${colors.light}33;
 `;
 
 export const BreadcrumbItem = styled(Box)<{ active: boolean }>`
@@ -73,9 +76,10 @@ export const BreadcrumbNumber = styled.div`
 `;
 
 export const NavigationContainer = styled(Box)`
-  margin: 32px 0;
+  padding: 32px 0;
   display: flex;
   justify-content: space-evenly;
+  background-color: ${colors.light}33;
 `;
 
 export const NavigationButton = styled(Button)`
@@ -94,4 +98,69 @@ export const FormContainer = styled(Box)`
   height: 150px;
   display: flex;
   flex-direction: column;
+`;
+
+export const FinalCard = styled(Paper)`
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid ${colors.dark};
+  }
+`;
+
+export const FinalCardHeader = styled.div`
+  color: ${colors.dark};
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+`;
+
+export const FinalCardContentContainer = styled(Grid)`
+  color: ${colors.light};
+`;
+
+export const FinalCardContentItem = styled(Grid)`
+  font-size: 12px;
+  &:nth-child(even) {
+    text-align: right;
+  }
+`;
+
+export const FinalContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+`;
+
+export const PanelContainer = styled(Grid)`
+  padding: 24px;
+`;
+
+export const PanelButton = styled(Button)`
+  && {
+    background-color: ${colors.light};
+
+    &:hover {
+      background-color: ${colors.dark};
+    }
+  }
+`;
+
+export const FinalCardContainer = styled(Grid)`
+  max-height: 400px;
+  overflow-y: scroll;
+  padding: 8px 16px;
+  margin-top: 0 !important;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

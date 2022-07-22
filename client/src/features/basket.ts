@@ -4,7 +4,7 @@ import type { RootState } from "../store";
 import { Basket, BasketItem } from "../types";
 
 const INITIAL_BASKET: Basket = {
-  tickets: [],
+  ticketsInBasket: [],
 };
 
 export const basket = createSlice({
@@ -12,18 +12,21 @@ export const basket = createSlice({
   initialState: INITIAL_BASKET,
   reducers: {
     addTo: (state, action: PayloadAction<BasketItem>) => {
-      const itemAlreadyInBasket = state.tickets.find(
+      const itemAlreadyInBasket = state.ticketsInBasket.find(
         (ticket) => ticket.id === action.payload.id
       );
       if (itemAlreadyInBasket) itemAlreadyInBasket.value += 1;
-      else state.tickets.push(action.payload);
+      else state.ticketsInBasket.push(action.payload);
     },
     removeFrom: (state, action: PayloadAction<{ id: number }>) => {
-      const itemAlreadyInBasket = state.tickets.find(
+      const itemAlreadyInBasket = state.ticketsInBasket.find(
         (ticket) => ticket.id === action.payload.id
       );
       if (itemAlreadyInBasket)
-        state.tickets.splice(state.tickets.indexOf(itemAlreadyInBasket), 1);
+        state.ticketsInBasket.splice(
+          state.ticketsInBasket.indexOf(itemAlreadyInBasket),
+          1
+        );
     },
     clear: (state) => {},
   },

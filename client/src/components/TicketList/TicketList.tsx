@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -7,8 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AddCircleRounded } from "@mui/icons-material";
-import { useAppDispatch, useAppSelector } from "../../storeHooks";
-import { addTo, removeFrom } from "../../features/basket";
+import useBasket from "../../hooks/useBasket";
 
 import { Ticket } from "../../types";
 
@@ -17,23 +14,9 @@ interface TicketListProps {
 }
 
 const TicketList = ({ tickets }: TicketListProps) => {
-  const basket = useAppSelector((state) => state.basket);
-  const dispatch = useAppDispatch();
-
-  const numberOfTicketInTheBusket = useCallback(
-    (id: number): number => {
-      const ticketInBasket = basket.tickets.find((ticket) => ticket.id === id);
-      if (!ticketInBasket) return 0;
-      return ticketInBasket.value;
-    },
-    [tickets, basket]
+  const { numberOfTicketInTheBusket, addToBasket, clearFromBasket } = useBasket(
+    { tickets }
   );
-
-  const addToBasket = (ticket: Ticket) =>
-    dispatch(addTo({ id: ticket.id, value: 1 }));
-
-  const clearFromBasket = (ticket: Ticket) =>
-    dispatch(removeFrom({ id: ticket.id }));
 
   return (
     <List
@@ -41,7 +24,7 @@ const TicketList = ({ tickets }: TicketListProps) => {
       sx={{
         position: "relative",
         overflow: "auto",
-        maxHeight: 500,
+        maxHeight: 480,
         margin: "0 24px",
       }}
     >

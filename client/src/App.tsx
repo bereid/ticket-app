@@ -14,6 +14,7 @@ import { stages } from "./constants";
 import Basket from "./components/Basket";
 import Breadcrumb from "./components/Breadcrumb";
 import Contact from "./components/Contact";
+import Final from "./components/Final";
 import Logo from "./logo.jpeg";
 import Navigation from "./components/Navigation";
 import TicketList from "./components/TicketList";
@@ -37,27 +38,37 @@ const WrappedApp = () => {
 };
 
 const App = () => {
-  const { data, isError, isLoading } = useQuery(["offers"], listOffers);
-  const { currentStage, prevStage, nextStage, prevDisabled, nextDisabled } =
-    usePagination();
+  const {
+    data: tickets,
+    isError,
+    isLoading,
+  } = useQuery(["tickets"], listOffers);
+  const {
+    currentStage,
+    prevStage,
+    nextStage,
+    prevDisabled,
+    nextDisabled,
+    isOnLastStage,
+  } = usePagination();
 
   const renderMainComponent = useCallback(
     (stage: Stage) => {
       const components = {
-        0: <TicketList tickets={data ?? []} />,
-        1: <Basket tickets={data ?? []} />,
+        0: <TicketList tickets={tickets ?? []} />,
+        1: <Basket tickets={tickets ?? []} />,
         2: <Contact />,
-        3: <>jegyek küldése</>,
+        3: <Final tickets={tickets ?? []} />,
       };
       return components[stage];
     },
-    [data]
+    [tickets]
   );
 
   return (
     <BackgroundContainer>
+      <StyledLogo src={Logo} />
       <MainContainer>
-        <StyledLogo src={Logo} />
         <Breadcrumb stages={stages} current={currentStage} />
         <ContentContainer>{renderMainComponent(currentStage)}</ContentContainer>
         <Navigation
@@ -65,6 +76,7 @@ const App = () => {
           prevDisabled={prevDisabled}
           onNextClick={nextStage}
           nextDisbled={nextDisabled}
+          isOnLastStage={isOnLastStage}
         />
       </MainContainer>
     </BackgroundContainer>

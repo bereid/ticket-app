@@ -5,6 +5,7 @@ type NavigationProps = {
   onNextClick: () => void;
   prevDisabled: boolean;
   nextDisbled: boolean;
+  isOnLastStage: boolean;
 };
 
 const Navigation = ({
@@ -12,6 +13,7 @@ const Navigation = ({
   onNextClick,
   prevDisabled,
   nextDisbled,
+  isOnLastStage,
 }: NavigationProps) => (
   <NavigationContainer>
     <NavigationButton
@@ -26,7 +28,7 @@ const Navigation = ({
       onClick={onNextClick}
       variant="contained"
     >
-      Következő
+      {isOnLastStage ? "Befejezés" : "Következő"}
     </NavigationButton>
   </NavigationContainer>
 );

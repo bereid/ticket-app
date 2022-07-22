@@ -11,7 +11,7 @@ export type BasketItem = {
 };
 
 export type Basket = {
-  tickets: BasketItem[];
+  ticketsInBasket: BasketItem[];
 };
 
 export type Ticket = {
