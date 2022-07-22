@@ -3,10 +3,9 @@ import styled from "styled-components";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import List from "@mui/material/List";
-import { ListItem } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
-const colors = {
+export const colors = {
   primary: "#0c9d9a",
   dark: "#053c3c",
   light: "#0C9D9A",
@@ -85,6 +84,35 @@ export const NavigationButton = styled(Button)`
 
     &:hover {
       background-color: ${colors.dark};
+    }
+  }
+`;
+
+export const FormContainer = styled(Box)`
+  margin: auto;
+  width: 400px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledTextField = styled(TextField)`
+  && {
+    margin-top: 24px;
+    box-shadow: none;
+
+    input {
+      color: ${colors.dark};
+      border: 1px solid ${colors.light};
+      border-radius: 4px;
+
+      "&:hover" {
+        border-color: ${colors.dark};
+      }
+
+      "&::focused" {
+        border-color: ${colors.dark};
+      }
     }
   }
 `;
