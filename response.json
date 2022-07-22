@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Volt Fesztivál heti bérlet",
+    "available": 1290,
+    "price": 110000
+  },
+  {
+    "id": 2,
+    "name": "Volt Fesztivál napijegy - 1. nap",
+    "available": 555,
+    "price": 90000
+  },
+  {
+    "id": 3,
+    "name": "Volt Fesztivál napijegy - 2. nap",
+    "available": 0,
+    "price": 90000
+  },
+  {
+    "id": 4,
+    "name": "Volt Fesztivál napijegy - 3. nap",
+    "available": 112,
+    "price": 90000
+  },
+  {
+    "id": 5,
+    "name": "Volt Fesztivál napijegy - 4. nap",
+    "available": 0,
+    "price": 90000
+  },
+  {
+    "id": 6,
+    "name": "Volt Fesztivál napijegy - 5. nap",
+    "available": 2441,
+    "price": 90000
+  },
+  {
+    "id": 7,
+    "name": "Volt Fesztivál napijegy - 6. nap",
+    "available": 100,
+    "price": 90000
+  },
+  {
+    "id": 8,
+    "name": "Volt Fesztivál napijegy - 1. nap DIÁK",
+    "available": 40,
+    "price": 0
+  },
+  {
+    "id": 9,
+    "name": "Volt Fesztivál napijegy - 2. nap DIÁK",
+    "available": 99,
+    "price": 90000
+  },
+  {
+    "id": 10,
+    "name": "Volt Fesztivál napijegy - 3. nap DIÁK",
+    "available": 19,
+    "price": 90000
+  },
+  {
+    "id": 11,
+    "name": "Volt Fesztivál napijegy - 4. nap DIÁK",
+    "available": 18,
+    "price": 90000
+  },
+  {
+    "id": 12,
+    "name": "Volt Fesztivál napijegy - 5. nap DIÁK",
+    "available": 50,
+    "price": 90000
+  },
+  {
+    "id": 13,
+    "name": "Volt Fesztivál napijegy - 6. nap DIÁK",
+    "available": 129,
+    "price": 90000
+  }
+]
