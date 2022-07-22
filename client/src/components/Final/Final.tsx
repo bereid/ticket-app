@@ -41,24 +41,22 @@ const Final = ({ tickets }: FinalProps) => {
   const toggleAll = () =>
     selected.length === ticketsInBasketButSeparately?.length
       ? setSelected([])
-      : setSelected(ticketsInBasketButSeparately?.map((ticket) => ticket.id));
+      : setSelected(ticketsInBasketButSeparately?.map((_, i) => i));
 
   console.log(selected);
 
   return (
     <FinalContainer>
       <FinalCardContainer container spacing={2}>
-        {ticketsInBasketButSeparately.map((ticket) => (
+        {ticketsInBasketButSeparately.map((ticket, i) => (
           <Grid key={ticket.name} item xs={4}>
             <FinalCard
-              onClick={() => toggleSelection(ticket.id)}
+              onClick={() => toggleSelection(i)}
               style={{
-                backgroundColor: selected.includes(ticket.id)
+                backgroundColor: selected.includes(i)
                   ? `${colors.light}33`
                   : "",
-                border: selected.includes(ticket.id)
-                  ? `1px solid ${colors.dark}`
-                  : "",
+                border: selected.includes(i) ? `1px solid ${colors.dark}` : "",
               }}
               elevation={6}
             >
