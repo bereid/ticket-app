@@ -15,15 +15,14 @@ import Basket from "./components/Basket";
 import Breadcrumb from "./components/Breadcrumb";
 import Contact from "./components/Contact";
 import Final from "./components/Final";
-import Logo from "./logo.jpeg";
 import Navigation from "./components/Navigation";
 import TicketList from "./components/TicketList";
 import {
   BackgroundContainer,
   ContentContainer,
   MainContainer,
-  StyledLogo,
 } from "./components/StyledComponents";
+import { useAppSelector } from "./storeHooks";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +51,10 @@ const App = () => {
     isOnLastStage,
   } = usePagination();
 
+  const state = useAppSelector((state) => state);
+
+  console.log(state);
+
   const renderMainComponent = useCallback(
     (stage: Stage) => {
       const components = {
@@ -67,7 +70,6 @@ const App = () => {
 
   return (
     <BackgroundContainer>
-      <StyledLogo src={Logo} />
       <MainContainer>
         <Breadcrumb stages={stages} current={currentStage} />
         <ContentContainer>{renderMainComponent(currentStage)}</ContentContainer>

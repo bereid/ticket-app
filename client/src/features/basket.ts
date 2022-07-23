@@ -28,11 +28,13 @@ export const basket = createSlice({
           1
         );
     },
-    clear: (state) => {},
+    clearBasket: (state) => {
+      state.ticketsInBasket = [];
+    },
   },
 });
 
-export const { addTo, removeFrom, clear } = basket.actions;
+export const { addTo, removeFrom, clearBasket } = basket.actions;
 
 export const basketState = (state: RootState) => state.basket;
 

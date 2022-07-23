@@ -5,11 +5,15 @@ import type { RootState } from "../store";
 export type User = {
   name: string;
   email: string;
+  printedAll: boolean;
+  sentAll: boolean;
 };
 
 const INITIAL_USER = {
   name: "",
   email: "",
+  printedAll: false,
+  sentAll: false,
 };
 
 export const user = createSlice({
@@ -22,10 +26,23 @@ export const user = createSlice({
     updateEmail: (state, action: PayloadAction<{ email: string }>) => {
       state.email = action.payload.email;
     },
+    setSentAll: (state) => {
+      state.sentAll = true;
+    },
+    setPrintedAll: (state) => {
+      state.printedAll = true;
+    },
+    clearUser: (state) => {
+      state.email = "";
+      state.name = "";
+      state.printedAll = false;
+      state.sentAll = false;
+    },
   },
 });
 
-export const { updateName, updateEmail } = user.actions;
+export const { updateName, updateEmail, setSentAll, setPrintedAll, clearUser } =
+  user.actions;
 
 export const userState = (state: RootState) => state.user;
 

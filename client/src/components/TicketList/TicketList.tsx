@@ -45,7 +45,9 @@ const TicketList = ({ tickets }: TicketListProps) => {
             />
           )}
           <ListItemAvatar>
-            <IconButton onClick={() => addToBasket(ticket)}>
+            <IconButton
+              onClick={() => ticket.available > 0 && addToBasket(ticket)}
+            >
               <AddCircleRounded />
             </IconButton>
           </ListItemAvatar>

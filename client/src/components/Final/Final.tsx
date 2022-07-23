@@ -1,11 +1,12 @@
-import { useCallback, useState } from "react";
-import { Grid, Box } from "@mui/material";
 import useBasket from "../../hooks/useBasket";
+import useFinalPage from "../../hooks/useFinalPage";
+
 import { Ticket } from "../../types";
 
 import FinalBottomPanel from "../FinalBottomPanel";
 import {
   colors,
+  CardCover,
   FinalContainer,
   FinalCard,
   FinalCardContainer,
@@ -13,8 +14,11 @@ import {
   FinalCardContentItem,
   FinalCardHeader,
 } from "../StyledComponents";
+import { Grid } from "@mui/material";
 
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import EmailIcon from "@mui/icons-material/Email";
+import PrintIcon from "@mui/icons-material/Print";
 
 type FinalProps = {
   tickets: Ticket[];
@@ -22,28 +26,17 @@ type FinalProps = {
 
 const Final = ({ tickets }: FinalProps) => {
   const { ticketsInBasketButSeparately } = useBasket({ tickets });
-  const [selected, setSelected] = useState<number[]>([]);
-
-  const toggleSelection = useCallback(
-    (id: number) => {
-      let newSelected = [...selected];
-      const index = selected.indexOf(id);
-      if (index > -1) {
-        newSelected.splice(index, 1);
-      } else {
-        newSelected.push(id);
-      }
-      setSelected(newSelected);
-    },
-    [selected]
-  );
-
-  const toggleAll = () =>
-    selected.length === ticketsInBasketButSeparately?.length
-      ? setSelected([])
-      : setSelected(ticketsInBasketButSeparately?.map((_, i) => i));
-
-  console.log(selected);
+  const {
+    selected,
+    printed,
+    sent,
+    toggleSelection,
+    send,
+    print,
+    toggleAll,
+    isPrinterIconShown,
+    isEmailIconShown,
+  } = useFinalPage({ ticketsInBasketButSeparately });
 
   return (
     <FinalContainer>
@@ -60,6 +53,31 @@ const Final = ({ tickets }: FinalProps) => {
               }}
               elevation={6}
             >
+              {(isPrinterIconShown(i) || isEmailIconShown(i)) && (
+                <CardCover>
+                  <FinalCardHeader>{ticket.name}</FinalCardHeader>
+                  <FinalCardContentContainer
+                    container
+                    direction="row"
+                    justifyContent="space-evenly"
+                    alignItems="flex-start"
+                    rowSpacing={1}
+                  >
+                    {isEmailIconShown(i) && (
+                      <EmailIcon
+                        style={{ color: colors.dark }}
+                        fontSize="large"
+                      />
+                    )}
+                    {isPrinterIconShown(i) && (
+                      <PrintIcon
+                        style={{ color: colors.dark }}
+                        fontSize="large"
+                      />
+                    )}
+                  </FinalCardContentContainer>
+                </CardCover>
+              )}
               <ConfirmationNumberIcon
                 style={{ color: colors.dark }}
                 fontSize="large"
@@ -89,11 +107,7 @@ const Final = ({ tickets }: FinalProps) => {
           </Grid>
         ))}
       </FinalCardContainer>
-      <FinalBottomPanel
-        toggleAll={toggleAll}
-        print={() => {}}
-        send={() => {}}
-      />
+      <FinalBottomPanel toggleAll={toggleAll} print={print} send={send} />
     </FinalContainer>
   );
 };

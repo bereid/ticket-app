@@ -6,6 +6,8 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
+import bg from "../festival.jpg";
+
 export const colors = {
   primary: "#0c9d9a",
   dark: "#053c3c",
@@ -16,7 +18,10 @@ export const BackgroundContainer = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: ${colors.primary};
+  background-image: url(${bg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-positition: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,6 +112,7 @@ export const FinalCard = styled(Paper)`
   align-items: center;
   cursor: pointer;
   border: 1px solid transparent;
+  position: relative;
 
   &:hover {
     border: 1px solid ${colors.dark};
@@ -163,4 +169,20 @@ export const FinalCardContainer = styled(Grid)`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const CardCover = styled(Box)`
+  position: absolute;
+  background-color: ${colors.primary};
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 `;
