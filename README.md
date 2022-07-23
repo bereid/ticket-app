@@ -8,9 +8,9 @@ Ticket managing application built with NodeJS server and React client.
 
 ## install dependencies
 
-`cd ticket-app`
-`npm install`
-`npm run install-client`
+`cd ticket-app`  
+`npm install`  
+`npm run install-client`  
 
 # start in development mode
 
